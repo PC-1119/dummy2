@@ -1,21 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hello-world-deployment
+  name: {{ include "hello-world.fullname" . }}
   labels:
-    app: hello-world
+    app: {{ .Values.labels.app }}
 spec:
-  replicas: 2
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: hello-world
+      app: {{ .Values.labels.app }}
   template:
     metadata:
       labels:
-        app: hello-world
+        app: {{ .Values.labels.app }}
     spec:
       containers:
-      - name: hello-world-container
-        image: pc1119/my-world   # 👉 replace with your image name
-        ports:
-        - containerPort: 8080
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.containerPort }}
