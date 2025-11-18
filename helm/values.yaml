@@ -1,0 +1,11 @@
+replicaCount: 2
+
+image:
+  repository: pc1119/my-world
+  tag: "latest"
+  pullPolicy: IfNotPresent
+
+containerPort: 8080
+
+labels:
+  app: hello-world
