@@ -2,10 +2,14 @@ replicaCount: 2
 
 image:
   repository: pc1119/my-world
-  tag: "latest"
-  pullPolicy: IfNotPresent
+  tag: latest
 
 containerPort: 8080
 
-labels:
-  app: hello-world
+resources:
+  limits:
+    cpu: "500m"
+    memory: "512Mi"
+  requests:
+    cpu: "250m"
+    memory: "256Mi"
