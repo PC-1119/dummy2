@@ -1,21 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "dummy2.fullname" . }}
+  name: hello-world-deployment
   labels:
-    app: {{ include "dummy2.name" . }}
+    app: hello-world
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ include "dummy2.name" . }}
+      app: hello-world
   template:
     metadata:
       labels:
-        app: {{ include "dummy2.name" . }}
+        app: hello-world
     spec:
       containers:
-      - name: {{ include "dummy2.name" . }}-container
+      - name: hello-world-container
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         ports:
         - containerPort: {{ .Values.containerPort }}
+        resources:
+          limits:
+            cpu: {{ .Values.resources.limits.cpu }}
+            memory: {{ .Values.resources.limits.memory }}
+          requests:
+            cpu: {{ .Values.resources.requests.cpu }}
+            memory: {{ .Values.resources.requests.memory }}
