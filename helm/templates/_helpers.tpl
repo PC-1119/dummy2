@@ -1,7 +1,7 @@
-{{- define "hello-world.fullname" -}}
-{{ include "hello-world.name" . }}-deployment
+{{- define "dummy2.name" -}}
+hello-world
 {{- end -}}
 
-{{- define "hello-world.name" -}}
-{{ .Chart.Name }}
+{{- define "dummy2.fullname" -}}
+{{ include "dummy2.name" . }}
 {{- end -}}
